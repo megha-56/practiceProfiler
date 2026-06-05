@@ -57,3 +57,33 @@ export const loginUser=async(req,res)=>{
         res.status(500).json({message:"Internal Server Error"})
     }
 }
+
+export const editProfile =async (req,res)=>{
+    try{
+        const{name,username,email, phoneNo,pfp, gender, dob,bio, skills}=req.body;
+
+        if(!username){
+          return res.status(400).json({message: "Username and password are required"});
+       }
+       const user = await User.findOne({username}); //matches the username with the saved usernames,save the result in user variable
+        //username
+        if(!user){//if no user found
+            return res.status(400).json({message: "Invalid username or password"}); //return res.status.json
+        }
+        if (username) user.username=username;
+        if (name) user.name=name;
+        if (email) user.email=email;
+        if (phoneNo) user.phoneNo=phoneNo;
+        if (pfp) user.pfp=pfp;
+        if (gender) user.gender=gender;
+        if (dob) user.dob=dob;
+        if (bio) user.bio=bio;
+        if (skills) user.skills=skills;
+
+
+        res.status(200).json({message:"Profile Updated Successfully"});
+    }catch(error){
+        console.log("error commiting the changes",error)
+        res.status(500).json({message:"Internal Server Error"})
+    }
+}
