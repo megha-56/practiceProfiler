@@ -87,3 +87,15 @@ export const editProfile =async (req,res)=>{
         res.status(500).json({message:"Internal Server Error"})
     }
 }
+
+
+export const getUserProfile=async(req,res)=>{
+    try{
+        const {}
+
+        res.status(200).json({message:"Profile fetched successfully"})
+    }catch(error){
+        console.log("Error fetching User Profile",error)
+        res.status(500).json({message:"Internal Server Error"})
+    }
+}
