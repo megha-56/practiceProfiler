@@ -99,3 +99,34 @@ export const getUserProfile=async(req,res)=>{
         res.status(500).json({message:"Internal Server Error"})
     }
 }
+
+export const changePassword=async(req,res)=>{
+    try{
+        const{username,oldPassword, newPassword}=req.body;
+
+        if(!username){
+            return res.status(400).json({message:"Please enter your username"})
+        }
+
+        const user=await User.findOne({username})
+        if(!user){
+            return res.status(400).json({message:"Incorrect username"})
+        }
+        
+        // if(user.password !== password){
+        //     return res.status(400).json({message:"Password is Incorrect"})
+        // }
+
+        //Old passwrod ko user ke pasword se check kri
+
+
+        //old password galat ho to error
+
+
+        //new password hash krke user.password save kra do
+
+        
+    }catch(err){
+
+    }
+}
